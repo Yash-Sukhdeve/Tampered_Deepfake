@@ -1,0 +1,29 @@
+# Audio Tampering Pipeline - Dependencies
+# All tools are Free and Open Source Software (FOSS)
+
+# Core Audio Processing
+openai-whisper>=20231117  # GPU-accelerated ASR with word timestamps
+librosa>=0.10.0           # Audio analysis, prosody extraction
+pydub>=0.25.1             # Audio manipulation, splicing, crossfading
+soundfile>=0.12.0         # Audio I/O
+scipy>=1.11.0             # Signal processing utilities
+
+# NLP and Text Processing
+spacy>=3.7.0              # Part-of-speech tagging, NLP
+# Run: python -m spacy download en_core_web_sm
+
+# Montreal Forced Aligner
+# Installation: conda install -c conda-forge montreal-forced-aligner
+# OR: pip install montreal-forced-aligner
+montreal-forced-aligner>=3.0.0
+
+# Utilities
+numpy>=1.24.0             # Numerical operations
+pandas>=2.0.0             # Data manipulation
+tqdm>=4.65.0              # Progress bars
+textgrid>=1.6.0           # TextGrid file parsing (for MFA output)
+
+# Optional but recommended
+ffmpeg-python>=0.2.0      # Alternative audio conversion
+torch>=2.0.0              # For Whisper GPU acceleration (CUDA)
+# Install PyTorch with CUDA: pip install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cu118

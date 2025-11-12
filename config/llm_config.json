@@ -1,0 +1,75 @@
+{
+  "enabled": true,
+  "lm_studio_url": "http://localhost:1234",
+  "model": "mistral-7b-instruct-v0.1",
+  "temperature": 0,
+  "max_tokens": 1500,
+  "timeout_seconds": 180,
+  "retry_on_failure": true,
+  "max_retries": 2,
+  "pause_on_failure": true,
+  "log_prompts_and_responses": true,
+
+  "strategies": {
+    "vocabulary_substitution": {
+      "enabled": true,
+      "min_semantic_impact": 3.0,
+      "candidates_per_transcript": 5,
+      "description": "Find antonyms and opposites constrained to deepfake vocabulary"
+    },
+    "modality_shift": {
+      "enabled": true,
+      "min_semantic_impact": 3.5,
+      "candidates_per_transcript": 3,
+      "description": "Change modal verbs (will→might, can→could) to alter certainty"
+    },
+    "temporal_distortion": {
+      "enabled": true,
+      "min_semantic_impact": 4.0,
+      "candidates_per_transcript": 2,
+      "description": "Change verb tenses to distort timeline (past→future)"
+    },
+    "factual_sabotage": {
+      "enabled": true,
+      "min_semantic_impact": 4.0,
+      "candidates_per_transcript": 2,
+      "description": "Replace entities (dates, numbers, names)"
+    }
+  },
+
+  "prosody_matching": {
+    "context_window_ms": 200,
+    "weights": {
+      "pitch": 0.4,
+      "energy": 0.3,
+      "duration": 0.3
+    },
+    "max_distance_threshold": 3.0,
+    "adaptive_crossfade": true,
+    "crossfade_durations": {
+      "low_distance": 2,
+      "medium_distance": 5,
+      "high_distance": 10
+    }
+  },
+
+  "caching": {
+    "vocabulary_cache_file": ".vocab_cache.pkl",
+    "enable_vocabulary_caching": true,
+    "enable_response_caching": false
+  },
+
+  "validation": {
+    "require_natural_sentences": true,
+    "require_vocabulary_match": true,
+    "min_coherence_score": 3.0,
+    "filter_duplicate_candidates": true
+  },
+
+  "logging": {
+    "log_dir": "logs",
+    "llm_requests_log": "llm_requests.jsonl",
+    "llm_errors_log": "llm_errors.log",
+    "save_failed_prompts": true
+  }
+}
