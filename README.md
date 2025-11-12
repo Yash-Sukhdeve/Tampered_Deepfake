@@ -256,7 +256,7 @@ If you use this pipeline in your research, please cite:
   title={Tampered Deepfake Audio Pipeline},
   author={Your Name},
   year={2025},
-  url={https://github.com/yourusername/tampered-deepfake}
+  url={https://github.com/Yash-Sukhdeve/Tampered-Deepfake}
 }
 ```
 
@@ -276,4 +276,4 @@ This project is for research purposes only. Ensure ethical use and obtain proper
 
 **Contact**: [Your Email]
 **Project**: Tampered Deepfake Detection Research
-**Institution**: [Your Institution]
+**Institution**: AVBHAC Lab, Clarkson University(NY)
