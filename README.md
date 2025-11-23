@@ -40,9 +40,11 @@ All operations use prosody-aware splicing to create natural-sounding tampers tha
 ```
 Tampered_Deepfake/
 ├── data/
-│   ├── original/          # Original m4a files
-│   ├── deepfake/          # YourTTS/XTTS deepfake audio
-│   └── scripts/           # PDF transcripts
+│   ├── df_script.pdf      # Deepfake script transcript
+│   ├── LP_script.pdf      # Lincoln Park script transcript
+│   └── sub096/            # Subject 096 data
+│       ├── original/      # Original m4a files
+│       └── deepfake/      # YourTTS/XTTS deepfake audio (16kHz WAV)
 ├── output/
 │   ├── preprocessed/      # 16kHz mono WAVs
 │   ├── transcripts/       # Whisper JSON + MFA TextGrids
@@ -58,8 +60,7 @@ Tampered_Deepfake/
 │       ├── audio.py       # Audio processing (PyDub)
 │       └── nlp.py         # Text analysis (spaCy)
 ├── run_pipeline.py        # Master orchestration script
-├── requirements.txt
-└── CLAUDE.md             # Development guide
+└── requirements.txt
 ```
 
 ## Installation
@@ -115,18 +116,25 @@ python run_pipeline.py --step 4 --max_tampers 10
 ### Custom Paths
 
 ```bash
-# Preprocessing
-python src/01_preprocess.py --input_dir data/original --output_dir output/preprocessed
+# Preprocessing (convert m4a to 16kHz mono WAV)
+python src/01_preprocess.py --input_dir data/sub096/original --output_dir output/preprocessed
 
-# Analysis
+# Analysis (Whisper transcription + MFA alignment)
 python src/02_analyze.py --input_dir output/preprocessed --output_dir output/transcripts
 
-# Identification
+# Identification (find tamper candidates)
 python src/03_identify.py --audio_dir output/preprocessed --transcript_dir output/transcripts
 
-# Tampering
+# Tampering (generate tampered audio)
 python src/04_tamper.py --candidate_dir output/metadata --original_audio_dir output/preprocessed
 ```
+
+### Adding New Subjects
+
+To process additional subjects:
+1. Create `data/sub{ID}/original/` with original m4a recordings
+2. Create `data/sub{ID}/deepfake/` with TTS-generated deepfake audio (16kHz WAV)
+3. Run the pipeline with appropriate paths
 
 ## Output Format
 
@@ -254,9 +262,9 @@ If you use this pipeline in your research, please cite:
 ```bibtex
 @software{tampered_deepfake_pipeline,
   title={Tampered Deepfake Audio Pipeline},
-  author={Your Name},
+  author={Sukhdeve, Yash},
   year={2025},
-  url={https://github.com/Yash-Sukhdeve/Tampered-Deepfake}
+  url={https://github.com/Yash-Sukhdeve/Tampered_Deepfake}
 }
 ```
 

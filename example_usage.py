@@ -123,10 +123,7 @@ def main():
             print(f"    - {Path(f).name}")
 
     print("\n\n✓ Example completed!")
-    print("\nFor more details, see:")
-    print("  - README.md: General usage")
-    print("  - DEPLOYMENT.md: Production deployment")
-    print("  - CLAUDE.md: Development architecture")
+    print("\nFor more details, see README.md")
 
 if __name__ == "__main__":
     main()
